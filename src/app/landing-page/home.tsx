@@ -6,6 +6,16 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 export default function Page() {
+
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/My Akashdeep Singh resume.pdf";
+    link.download = "Akashdeep_Singh_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -62,6 +72,7 @@ export default function Page() {
               <Button
                 variant="outline"
                 className="group border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-300"
+                onClick={handleDownloadCV} 
               >
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                 Download CV

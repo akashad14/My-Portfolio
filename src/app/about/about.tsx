@@ -54,8 +54,8 @@ export default function AboutPage() {
             <motion.div variants={itemVariants}>
               <h2 className="text-3xl font-semibold mb-4">Who Am I?</h2>
               <p className="text-gray-300 leading-relaxed mb-6">
-              I'm a Frontend Developer passionate about creating responsive and user-friendly web applications 
-              using React.js, Next.js, and JavaScript. I enjoy turning ideas into clean and interactive designs
+              I&apos;m a Frontend Developer passionate about creating responsive and user-friendly web applications 
+              using React.js, Next.js, and JavaScript. I&apos; enjoy turning ideas into clean and interactive designs
                while focusing on UI and performance optimization.
               </p>
               <p className="text-gray-300 leading-relaxed">
