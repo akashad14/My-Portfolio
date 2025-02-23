@@ -1,50 +1,62 @@
-"use client";
-import { Github, Linkedin, } from "lucide-react";
+'use client';
 
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function Footer() {
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      setShowScroll(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', checkScroll);
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
+
   return (
-    <footer className="bg-gray-900 text-gray-400 py-10 text-center border-t-1 border-blue-950">
-      {/* Logo & Description */}
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex items-center space-x-2">
-          
-          <span className="text-yellow-500 text-xl font-semibold">ADS</span>
-        </div>
-
-        <p className="max-w-lg text-sm px-4">
-          Lorem Ipsum Dolor Sit Amet Consectetur. Nunc Luctus Malesuada Massa At Donec Diam. Felis Nec Sit A In Sodales.
-          Quis Pellentesque Nisl Laoreet Sagittis.
-        </p>
-
-        {/* Social Media Links */}
-        <div className="flex space-x-6 text-gray-500 text-2xl">
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-          <Github />
-          </a>
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white transition"
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="bg-black text-white py-6 text-center relative"
+    >
+      <motion.div
+        className="flex justify-center mb-4"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <div className="text-4xl font-bold text-white">G</div>
+      </motion.div>
+      <nav className="flex justify-center space-x-6 text-gray-300">
+        {['About', 'Services', 'Portfolios', 'Contact'].map((item) => (
+          <motion.a
+            key={item}
+            href="#"
+            whileHover={{ color: '#A78BFA' }}
+            className="transition duration-300"
           >
-            <Linkedin />
-          </a>
-        </div>
-      </div>
+            {item}
+          </motion.a>
+        ))}
+      </nav>
+      <p className="text-gray-500 mt-3">
+        &copy; 2024 All rights reserved by <a href="#" className="text-purple-400">ADS</a>
+      </p>
 
-      {/* Copyright & Links */}
-      <div className="mt-6 border-t border-gray-800  pt-4 text-sm flex flex-col md:flex-row justify-between items-center px-6">
-        <p>© Copyright 2025 @ADS All Rights Reserved.</p>
-        <div className="flex space-x-4">
-          <a href="#" className="hover:text-white transition">
-            Terms & Condition
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Privacy Policy
-          </a>
-        </div>
-      </div>
-    </footer>
+      {showScroll && (
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 bg-purple-500 p-3 rounded-full shadow-lg hover:bg-purple-600 transition duration-300"
+        >
+          <FaArrowUp className="text-white" />
+        </motion.button>
+      )}
+    </motion.footer>
   );
 }

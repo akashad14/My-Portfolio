@@ -1,93 +1,67 @@
-"use client";
-
-import type React from "react"
-
 export default function EducationExperience() {
   return (
-    <div className="min-h-screen bg-black text-gray-300 pt-16 pb-10 px-4 md:px-6 lg:px-">
-      <div className=" mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-4xl font-medium text-white mb-6">Education & Experience</h1>
-        {/* <p className="text-lg text-gray-400 mb-16">
-          Established history of success in design and development, consistently delivering valuable insights and
-          driving significant results.
-        </p> */}
+    <div className=" p-6 md:p-12">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-12 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          Education & <span className="text-[#7C3AED]">Work Experience</span>
+        </h1>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Education Section */}
-          <div className="relative">
-            <h2 className="text-2xl font-semibold text-white mb-8">Education</h2>
-            <div className="relative border-l border-gray-700 pl-8 ml-4">
-              {/* Timeline Item 1 */}
-              <div className="mb-16 relative">
-                <span className="absolute -left-[35px] flex items-center justify-center w-7 h-7 rounded-full bg-gray-900 border border-gray-700">
-                  <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-                </span>
-                <div className="inline-block px-4 py-1 bg-gray-900 rounded-full text-sm text-gray-400 mb-4">
-                08/2022 - 09/2024
+        <div className="rounded-2xl border-2 border-[#321763] bg-[#140c1c]/30 p-8">
+          <div className="grid gap-12 md:grid-cols-2">
+            {/* Education Section */}
+            <div>
+              <h2 className="mb-8 text-xl font-semibold text-[#7C3AED]">EDUCATION</h2>
+              <div className="relative space-y-8 before:absolute before:left-[5px] before:top-2 before:h-[calc(100%-24px)] before:w-[2px] before:bg-[#28134E]">
+                <div className="relative pl-6">
+                  <div className="absolute left-0 top-2 h-3 w-3 rounded-full bg-[#7C3AED]" />
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold text-white">Master of Computer Applications</h3>
+                    <p className="text-white">DAV Instituteof Engineering And Technology</p>
+                    <p className="text-sm text-gray-400">08/2022 - 09/2024</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-white mb-2"> Master of Computer Applications</h3>
-                <p className="text-gray-400 mb-2">DAV Institute of Engineering And Technology</p>
-              
-              </div>
 
-              {/* Timeline Item 2 */}
-              <div className="mb-16 relative">
-                <span className="absolute -left-[35px] flex items-center justify-center w-7 h-7 rounded-full bg-gray-900 border border-gray-700">
-                  <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-                </span>
-                <div className="inline-block px-4 py-1 bg-gray-900 rounded-full text-sm text-gray-400 mb-4">
-                  08/2019 - 05/2022
+                <div className="relative pl-6">
+                  <div className="absolute left-0 top-2 h-3 w-3 rounded-full bg-[#7C3AED]" />
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold text-white">Bachelor of Computer Applications</h3>
+                    <p className="text-white">DAV COLLEGE</p>
+                    <p className="text-sm text-gray-400">08/2019 - 05/2022</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-white mb-2">Bachelor of Computer Applications</h3>
-                <p className="text-gray-400 mb-2">DAV COLLEGE</p>
-                
               </div>
             </div>
-          </div>
 
-          {/* Experience Section */}
-          <div className="relative">
-            <h2 className="text-2xl font-semibold text-white mb-8">Experience</h2>
-            <div className="relative border-l border-gray-700 pl-8 ml-4">
-              {/* Frontend Developer Intern */}
-              <div className="mb-16 relative">
-                <span className="absolute -left-[35px] flex items-center justify-center w-7 h-7 rounded-full bg-gray-900 border border-gray-700">
-                  <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-                </span>
-                <div className="inline-block px-4 py-1 bg-gray-900 rounded-full text-sm text-gray-400 mb-4">
-                  10/2024 - 01/2025
-                </div>
-                <h3 className="text-xl font-medium text-white mb-2">Coders Boutique</h3>
-                <p className="text-gray-400 mb-2">Frontend Developer Intern</p>
-                <p className="text-gray-500 mb-4">A company focused on web development and IT solutions.</p>
-                <ul className="list-disc list-inside text-gray-500 space-y-2">
-                  <li>Assist in the development and maintenance of scalable web application</li>
-                  <li>
-                    Building responsive and interactive user interfaces using HTML, CSS, JavaScript, and modern frontend
-                    frameworks
+            {/* Experience Section */}
+            <div>
+              <h2 className="mb-8 text-xl font-semibold text-[#7C3AED]">EXPERIENCE</h2>
+              <div className="relative space-y-8 before:absolute before:left-[5px] before:top-2 before:h-[calc(100%-24px)] before:w-[2px] before:bg-[#28134E]">
+                <div className="relative pl-6">
+                  <div className="absolute left-0 top-2 h-3 w-3 rounded-full bg-[#7C3AED]" />
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold text-white">Coders Boutique</h3>
+                    <p className="text-white">Frontend Developer Intern</p>
+                    <p className="text-sm text-gray-400">10/2024 - 01/2025</p>
+                    <p className="text-sm text-slate-400">
+                    A company focused on web development and IT solutions.
+                  </p>
+                <ul className="mt-2 list-disc list-outside tracking-normal text-sm/6 text-slate-400">
+                  <li>Developed and maintained responsive web applications using React.js, Next.js, and JavaScript.
                   </li>
                   <li>
-                    Identify and fix front-end issues and bugs, ensuring a smooth user experience across different
-                    devices
+                  Optimized front-end performance, reducing page load times by 25% through code refactoring.
+                  </li>
+                  <li>
+                  Resolved over 10+ UI/UX issues, enhancing user experience across multiple browsers.
+                  </li>
+                  <li>
+                  Collaborated with senior developers to implement Tailwind CSS and improve design consistency.
                   </li>
                 </ul>
-              </div>
-
-              {/* Add more experience items here */}
-              {/* <div className="mb-16 relative">
-                <span className="absolute -left-[35px] flex items-center justify-center w-7 h-7 rounded-full bg-gray-900 border border-gray-700">
-                  <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-                </span>
-                <div className="inline-block px-4 py-1 bg-gray-900 rounded-full text-sm text-gray-400 mb-4">
-                  2023 - 2024
                 </div>
-                <h3 className="text-2xl font-medium text-white mb-2">Personal Projects</h3>
-                <p className="text-gray-400 mb-2">@ Web Developer</p>
-                <p className="text-gray-500">
-                  Developed and maintained various personal web development projects using modern technologies and best
-                  practices.
-                </p>
-              </div> */}
+                </div>
+
+              </div>
             </div>
           </div>
         </div>

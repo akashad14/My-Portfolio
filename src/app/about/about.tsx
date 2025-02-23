@@ -1,84 +1,117 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { motion } from "framer-motion"
+import { Phone, Mail, MapPin, Calendar } from "lucide-react"
+import Image from "next/image"
 
-export default function AboutHero() {
+export default function AboutPage() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  }
+
   return (
-    <section className="container mx-auto px-6 py-10 flex flex-col md:py-20">
+    <div className="min-h-screen bg-black text-white p-6 md:p-12 rounded-md">
       
-      {/* Title - Always Centered */}
-      <motion.h1
-        className="text-4xl sm:text-5xl font-medium mb-10 text-center text-white"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        About
-      </motion.h1>
+      <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl mx-auto">
+        <motion.div variants={itemVariants} className="relative mb-12">
+          <h1 className="text-5xl font-bold mb-2">About Me</h1>
+          <div className="w-48 h-1 bg-gradient-to-r from-rose-500 to-pink-500"></div>
+        </motion.div>
 
-      {/* Grid Container */}
-      <div className="flex flex-col-reverse md:flex-row items-center md:items-start gap-12 md:gap-20 w-full">
-        
-        {/* Left Side - Text Content (Left-Aligned on Larger Screens) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }}
-          className="w-full max-w-3xl text-center md:text-left"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal mb-4 text-blue-400">Akashdeep Singh</h2>
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-normal mb-4 text-gray-300">Frontend Developer</h3>
-          
-          <motion.p
-            className="text-base sm:text-lg text-gray-400 mb-6 leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Hi, I&apos;m Akashdeep Singh, a passionate frontend developer based in Punjab. I completed my MCA in August
-            2024 and have a strong foundation in HTML, CSS, JavaScript, and modern frameworks like TypeScript and
-            Next.js. I&apos;m currently honing my skills through projects and freelance work, aiming to create sleek,
-            user-friendly web experiences. Always eager to learn and innovate, I&apos;m looking for opportunities to
-            grow in the field of web development.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <a
-              href="#contact"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              Get in Touch
-            </a>
+        <div className="grid md:grid-cols-2 gap-12">
+          <motion.div variants={itemVariants} className="relative">
+            <Image
+              src="/images/home.jpg"
+              alt="Profile"
+              width={500}
+              height={500}
+              className="rounded-3xl w-full object-cover"
+              priority
+            />
           </motion.div>
-        </motion.div>
 
-        {/* Right Side - Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
-        >
-          <Image
-            src="/images/about.jpg"
-            alt="Akashdeep Singh"
-            width={500}
-            height={500}
-            className="rounded-lg shadow-2xl w-full h-auto"
-          />
-          <motion.div
-            className="absolute inset-0 bg-blue-500 mix-blend-multiply rounded-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          />
-        </motion.div>
-      </div>
-    </section>
-  );
+          <div className="space-y-8">
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl font-semibold mb-4">Who Am I?</h2>
+              <p className="text-gray-300 leading-relaxed mb-6">
+              I'm a Frontend Developer passionate about creating responsive and user-friendly web applications 
+              using React.js, Next.js, and JavaScript. I enjoy turning ideas into clean and interactive designs
+               while focusing on UI and performance optimization.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+              Always eager to learn new technologies and improve my skills, I am looking for opportunities to
+               contribute and grow in a dynamic development team.
+              </p>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl font-semibold mb-6">Personal Info</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-center space-x-4 bg-zinc-900/50 p-4 rounded-xl">
+                  <div className="bg-zinc-800 p-3 rounded-lg">
+                    <Phone className="w-6 h-6 text-rose-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Phone</p>
+                    <p className="text-white">+123 456 7890</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 bg-zinc-900/50 p-4 rounded-xl">
+                  <div className="bg-zinc-800 p-3 rounded-lg">
+                    <Mail className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Email</p>
+                    <p className="text-white">Example@Mail.Com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 bg-zinc-900/50 p-4 rounded-xl">
+                  <div className="bg-zinc-800 p-3 rounded-lg">
+                    <MapPin className="w-6 h-6 text-rose-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Location</p>
+                    <p className="text-white">India</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 bg-zinc-900/50 p-4 rounded-xl">
+                  <div className="bg-zinc-800 p-3 rounded-lg">
+                    <Calendar className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Birthday</p>
+                    <p className="text-white">Mar 14, 2001</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
 }
+
