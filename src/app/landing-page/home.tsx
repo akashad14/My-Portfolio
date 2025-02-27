@@ -15,7 +15,6 @@ export default function Page() {
     link.click();
     document.body.removeChild(link);
   };
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -32,7 +31,8 @@ export default function Page() {
   }
 
   return (
-    <div className="text-white p-6 md:p-12 relative overflow-hidden">
+    
+    <div className="min-h-screen w-full text-white p-6 md:p-12 relative overflow-hidden">
       {/* Background Pattern */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -49,15 +49,15 @@ export default function Page() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="grid md:grid-cols-2 gap-16 items-center"
         >
           <div className="space-y-8">
             <motion.div variants={item} className="space-y-4">
               <motion.h2 variants={item} className="text-2xl">
-                I am Akash
+                I am Akashdeep Singh
               </motion.h2>
               <motion.h1 variants={item} className="text-4xl md:text-6xl font-bold">
-                <span className="text-purple-400">Next-Level Web</span>
+                <span className="text-purple-400">Next-Level Frontend</span>
                 <br />
                 Developer.
               </motion.h1>
@@ -72,7 +72,7 @@ export default function Page() {
               <Button
                 variant="outline"
                 className="group border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-300"
-                onClick={handleDownloadCV} 
+                onClick={handleDownloadCV}
               >
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                 Download CV
@@ -82,7 +82,6 @@ export default function Page() {
                 {[
                   { icon: Github, href: "https://github.com/yourusername" },
                   { icon: Linkedin, href: "https://linkedin.com/in/yourusername" },
-                  
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -103,23 +102,43 @@ export default function Page() {
 
           <motion.div
             variants={item}
-            className="relative aspect-square max-w-md mx-auto"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="relative aspect-square max-w-md mx-auto lg:pt-16 "
+            initial={{ rotate: 5 }}
+            whileHover={{
+              rotate: 0,
+              transition: {
+                duration: 1.5,
+                ease: [0.6, 0.05, -0.01, 0.9],
+              },
+            }}
           >
-            <div className="absolute inset-0 rounded-3xl overflow-hidden bg-gradient-to-br from-purple-600/20 to-purple-900/20 transform rotate-6 h-96" />
-            <Image
-              src="/images/home1.jpg"
-              alt="Code editor showing development work"
-              width={500}
-              height={500}
-              className="rounded-3xl relative z-10 object-cover transition-transform duration-500 hover:scale-105 h-96"
-              priority
-            />
+            <motion.div
+              className="relative z-10 rounded-3xl overflow-hidden object-cover border-3 border-[#2a1454]"
+              // initial={{ rotate: 3 }}
+              whileHover={{
+                rotate: 0,
+                boxShadow: "0 0 0 2px rgb(59, 130, 246)", // Blue border
+                transition: {
+                  duration: 1.5,
+                  ease: [0.6, 0.05, -0.01, 0.9],
+                  boxShadow: { duration: 0.3 }, // Faster transition for the border
+                },
+              }}
+            >
+              <Image
+                src="/images/h.jpg"
+                alt="Code editor showing development work"
+                width={500}
+                height={500}
+                className="object-cover w-full lg:h-[450px] h-[250px] transition-transform duration-500 hover:scale-105 object-right"
+                priority
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </main>
     </div>
+   
   )
 }
 

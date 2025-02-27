@@ -47,6 +47,11 @@ const config: Config = withTV({
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        purple: {
+          300: "#B794F4",
+          600: "#7C3AED",
+          800: "#5B21B6",
+        },
         chart: {
           1: "hsl(var(--chart-1))",
           2: "hsl(var(--chart-2))",

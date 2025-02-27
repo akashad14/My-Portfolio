@@ -14,7 +14,7 @@ const skills = [
 
 export default function SkillsSection() {
   return (
-    <section className="bg-[#0a0214] text-white py-16">
+    <section className=" text-white py-16">
       <div className="max-w-5xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-purple-400"

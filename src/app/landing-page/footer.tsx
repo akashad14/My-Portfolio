@@ -1,62 +1,70 @@
-'use client';
+"use client"
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaArrowUp } from 'react-icons/fa';
+import { ChevronUp } from "lucide-react"
+import Link from "next/link"
+import { useState, useEffect } from "react"
 
 export default function Footer() {
-  const [showScroll, setShowScroll] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
-    const checkScroll = () => {
-      setShowScroll(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', checkScroll);
-    return () => window.removeEventListener('scroll', checkScroll);
-  }, []);
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  // Define page links with IDs
+  const pages = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact"},
+  ]
 
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="bg-black text-white py-6 text-center relative"
-    >
-      <motion.div
-        className="flex justify-center mb-4"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <div className="text-4xl font-bold text-white">G</div>
-      </motion.div>
-      <nav className="flex justify-center space-x-6 text-gray-300">
-        {['About', 'Services', 'Portfolios', 'Contact'].map((item) => (
-          <motion.a
-            key={item}
-            href="#"
-            whileHover={{ color: '#A78BFA' }}
-            className="transition duration-300"
-          >
-            {item}
-          </motion.a>
-        ))}
-      </nav>
-      <p className="text-gray-500 mt-3">
-        &copy; 2024 All rights reserved by <a href="#" className="text-purple-400">ADS</a>
-      </p>
+    <footer className="bg-black text-white py-12 relative">
+      <div className="container mx-auto px-4 flex flex-col items-center">
+        {/* Logo */}
+        <div className="mb-8">
+          <div className="w-16 h-16 bg-transparent rounded-full border-4 border-white flex items-center justify-center">
+            <span className="text-white text-4xl font-bold">G</span>
+          </div>
+        </div>
 
-      {showScroll && (
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 bg-purple-500 p-3 rounded-full shadow-lg hover:bg-purple-600 transition duration-300"
-        >
-          <FaArrowUp className="text-white" />
-        </motion.button>
-      )}
-    </motion.footer>
-  );
+        {/* Navigation */}
+        <nav className="mb-8">
+          <ul className="flex flex-wrap justify-center gap-8 text-lg">
+            {pages.map((page) => (
+              <li key={page.id}>
+                <Link href={page.id} className="hover:text-gray-300 transition-colors">
+                  {page.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Copyright */}
+        <div className="text-gray-400 text-sm">© {new Date().getFullYear()} All rights reserved by ThemeJunction</div>
+      </div>
+
+      {/* Scroll to top button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 w-12 h-12 rounded-full bg-purple-700 text-white flex items-center justify-center shadow-lg transition-opacity duration-300 ${
+          showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ChevronUp size={24} />
+      </button>
+    </footer>
+  )
 }
