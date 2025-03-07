@@ -1,156 +1,208 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import Image from "next/image"
-import { Home, User, Briefcase, Phone, Menu,  } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet"
+import { Home, User, Briefcase, Menu, X, Phone } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("home")
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-
-      // Get all sections
-      const sections = ["home", "about", "projects", "contact"]
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-
-      if (currentSection) {
-        setActiveSection(currentSection)
+      if (window.scrollY > 20) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
       }
     }
 
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    // Add refresh animation
+    const refreshAnimation = () => {
+      const navbar = document.getElementById("navbar")
+      if (navbar) {
+        navbar.classList.add("animate-fade-in")
+        setTimeout(() => {
+          navbar.classList.remove("animate-fade-in")
+        }, 1000)
+      }
+    }
+
+    refreshAnimation()
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+  const scrollToSection = (id: string) => {
+    setIsOpen(false)
+    const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
-      setActiveSection(sectionId)
     }
   }
 
-  const navItems = [
-    { id: "home", label: "Home", icon: Home },
-    { id: "about", label: "About", icon: User },
-    { id: "projects", label: "Projects", icon: Briefcase },
-    { id: "contact", label: "Contact", icon: Phone },
-  ]
-
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-none" : "bg-transparent",
-      )}
+    <motion.nav
+      id="navbar"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed w-full z-50 py-4 px-4 md:px-8 transition-all duration-300 ${
+        scrolled ? "bg-black/70 backdrop-blur-md shadow-lg" : "bg-transparent"
+      }`}
     >
-      <div className="container mx-auto px-4 sm:px-6">
-        <nav className="flex items-center justify-between md:justify-center h-16 sm:h-20">
-          {/* Logo or Brand - visible on mobile */}
-          <div className="flex md:hidden">
-            <Image
-                            src="/images/logo/ads-logo1.png"
-                            alt="Code editor showing development work"
-                            width={50}
-                            height={50}
-                            className="h-[100px] w-[100px]"
-                            priority
-                          />
-          </div>
-
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-white">
-                  <Menu className="h-8 w-8" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[85%] sm:w-[350px] bg-[#1a0033] border-r border-purple-900">
-                <div className="flex items-center justify-between mb-6">
-                  <SheetTitle className="text-white text-2xl font-bold">Menu</SheetTitle>
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon" className="">
-                     
-                    <Image 
-                      src="/images/close.png" // Update the path to your image
-                      alt="Close"
-                      width={24} 
-                      height={24} 
-                      className="h-6 w-6"
-                    />
-                    </Button>
-                  </SheetClose>
-                </div>
-
-                <div className="flex flex-col gap-4 mt-8">
-                  {navItems.map((item) => (
-                    <SheetClose asChild key={item.id}>
-                      <Button
-                        variant="ghost"
-                        className={cn(
-                          "flex items-center gap-3 text-white hover:bg-white/10 hover:text-white justify-start h-14 text-lg",
-                          activeSection === item.id && "bg-white/10",
-                        )}
-                        onClick={() => {
-                          scrollToSection(item.id)
-                        }}
-                      >
-                        <item.icon className="h-6 w-6" />
-                        {item.label}
-                      </Button>
-                    </SheetClose>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-2 rounded-full bg-black/40 backdrop-blur-md px-3 py-2 border border-gray-700">
+      <div className="max-w-7xl mx-auto flex justify-between items-center md:justify-center ">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="md:absolute md:left-8 lg:left-12"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }}
+        >
           
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                className={cn(
-                  "flex items-center gap-1 lg:gap-2 text-white hover:bg-white/10 hover:text-white rounded-full transition-colors border border-gray-800",
-                  activeSection === item.id && "bg-white/10",
-                )}
-                onClick={() => scrollToSection(item.id)}
-              >
-                <item.icon className="h-4 w-4 lg:h-5 lg:w-5" />
-                <span className="hidden sm:inline">{item.label}</span>
-              </Button>
-            ))}
+          <Image
+            src="/images/logo/ads-logo1.png"
+            alt="ADS Logo"
+            width={60}
+            height={30}
+            className="w-auto h-[50px] md:h-[96px]"
+            priority
+          />
+        </Link>
+        {/* Desktop Navigation - Centered */}
+        <div className="hidden md:flex justify-center">
+          <div className="bg-zinc-800/80 rounded-full px-4 py-2 backdrop-blur-sm">
+            <ul className="flex items-center">
+              <li>
+                <button
+                  onClick={() => scrollToSection("home")}
+                  className="flex items-center justify-center space-x-1 px-4 py-1 rounded-full text-white hover:bg-zinc-700 transition-colors"
+                >
+                  <div className="bg-zinc-700 p-2 rounded-full">
+                    <Home size={16} />
+                  </div>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="flex items-center space-x-1 mr-2 px-4 py-2 border-1 border-purple-500/20 rounded-full text-white hover:bg-zinc-700 transition-colors"
+                >
+                  <User size={18} className="mr-1" />
+                  <span>About</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("projects")}
+                  className="flex items-center space-x-1 mr-2 px-4 py-2 border-1 border-purple-500/20 rounded-full text-white hover:bg-zinc-700 transition-colors"
+                >
+                  <Briefcase size={18} className="mr-1" />
+                  <span>Projects</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="flex items-center space-x-1 mr-2 px-4 py-2 border-1 border-purple-500/20 rounded-full text-white hover:bg-zinc-700 transition-colors"
+                >
+                  <Phone size={18} className="mr-1" />
+                  <span>Contact</span>
+                </button>
+              </li>
+              {/* <li>
+                <button
+                  onClick={() => scrollToSection("gallery")}
+                  className="flex items-center space-x-1 px-4 py-2 rounded-full text-white hover:bg-zinc-700 transition-colors"
+                >
+                  <ImageIcon size={18} className="mr-1" />
+                  <span>Gallery</span>
+                </button>
+              </li> */}
+            </ul>
           </div>
-          {/* <div className="flex rounded-full bg-black/40 backdrop-blur-md items-start">
-            <Image
-                            src="/images/logo/ads-logo1.png"
-                            alt="Code editor showing development work"
-                            width={50}
-                            height={50}
-                            className="h-[100px] w-[100px]"
-                            priority
-                          />
-          </div> */}
-        </nav>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-white p-2 rounded-full hover:bg-zinc-800 transition-colors"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
-    </header>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="bg-zinc-900/90 backdrop-blur-md mt-4 rounded-xl p-4">
+              <ul className="flex flex-col space-y-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection("home")}
+                    className="flex items-center space-x-2 w-full px-4 py-3 rounded-lg text-white hover:bg-zinc-800 transition-colors"
+                  >
+                    <Home size={20} />
+                    <span>Home</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("about")}
+                    className="flex items-center space-x-2 w-full px-4 py-3 rounded-lg text-white hover:bg-zinc-800 transition-colors"
+                  >
+                    <User size={20} />
+                    <span>About</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("projects")}
+                    className="flex items-center space-x-2 w-full px-4 py-3 rounded-lg text-white hover:bg-zinc-800 transition-colors"
+                  >
+                    <Briefcase size={20} />
+                    <span>Projects</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="flex items-center space-x-2 w-full px-4 py-3 rounded-lg text-white hover:bg-zinc-800 transition-colors"
+                  >
+                    <Phone size={20} />
+                    <span>Contact</span>
+                  </button>
+                </li>
+                {/* <li>
+                  <button
+                    onClick={() => scrollToSection("gallery")}
+                    className="flex items-center space-x-2 w-full px-4 py-3 rounded-lg text-white hover:bg-zinc-800 transition-colors"
+                  >
+                    <ImageIcon size={20} />
+                    <span>Gallery</span>
+                  </button>
+                </li> */}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   )
 }
 

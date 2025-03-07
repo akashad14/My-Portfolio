@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Linkedin, Github } from "lucide-react"
 
 export default function ContactForm() {
   return (
@@ -55,37 +55,27 @@ export default function ContactForm() {
           </p>
 
           <div className="space-y-4">
+            {/* <p className="text-white hover:text-[#a855f7] transition-colors">
+              <a href="tel:+01123654896">+01 </a>
+            </p> */}
             <p className="text-white hover:text-[#a855f7] transition-colors">
-              <a href="tel:+01123654896">+01 123 654 8096</a>
+              <a href="mailto:gerolddesign@mail.com">ADS@mail.com</a>
             </p>
-            <p className="text-white hover:text-[#a855f7] transition-colors">
-              <a href="mailto:gerolddesign@mail.com">gerolddesign@mail.com</a>
-            </p>
-            <p className="text-white">
+            {/* <p className="text-white">
               Warne Park Street Pine,
               <br />
               FL 33157, New York
-            </p>
+            </p> */}
           </div>
 
           <div className="flex gap-4">
+            
+           
             <a
               href="#"
               className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#a855f7] hover:border-[#a855f7] transition-colors"
             >
-              <Facebook size={18} />
-            </a>
-            <a
-              href="#"
-              className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#a855f7] hover:border-[#a855f7] transition-colors"
-            >
-              <Instagram size={18} />
-            </a>
-            <a
-              href="#"
-              className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#a855f7] hover:border-[#a855f7] transition-colors"
-            >
-              <Twitter size={18} />
+               <Github size={18} />
             </a>
             <a
               href="#"

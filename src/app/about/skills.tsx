@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image"
 
 const skills = [
   { name: "HTML", image: "/images/html.png" },
@@ -43,9 +44,11 @@ export default function SkillsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             //   whileHover={{ rotate: 5 }}
             >
-              <img
+              <Image
                 src={skill.image}
                 alt={skill.name}
+                width={14}
+                height={14}
                 className="w-14 h-14 object-contain"
               />
               <span className="text-purple-400 mt-2 text-lg">{skill.name}</span>
