@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-
+import {Phone, MapPin, Mail, Calendar } from "lucide-react"
 import Image from "next/image"
 
 export default function AboutPage() {
@@ -64,7 +64,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            {/* <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants}>
               <h2 className="text-3xl font-semibold mb-6">Personal Info</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-center space-x-4 bg-zinc-900/50 p-4 rounded-xl">
@@ -107,7 +107,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </motion.div> */}
+            </motion.div>
           </div>
         </div>
       </motion.div>

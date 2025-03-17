@@ -59,7 +59,7 @@ export default function Footer() {
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/akashdeep-singh-613644224"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-300 transition-colors"
