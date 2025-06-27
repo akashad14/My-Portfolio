@@ -9,8 +9,8 @@ export default function Page() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/My Akashdeep Singh resume.pdf";
-    link.download = "Akashdeep_Singh_CV.pdf";
+    link.href = "/Akashdeep-Singh-Resume.pdf";
+    link.download = "Akashdeep-Singh-Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -80,8 +80,8 @@ export default function Page() {
 
               <motion.div variants={container} className="flex gap-4">
                 {[
-                  { icon: Github, href: "https://github.com/yourusername" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/yourusername" },
+                  { icon: Github, href: "https://github.com/akashad14" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/akashdeep-singh-613644224" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
