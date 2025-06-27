@@ -9,6 +9,7 @@ import ProjectsSection from "@/app/project/project"
 import ContactForm from "@/app/project/contact"
 import Footer from "@/app/landing-page/footer"
 
+
 export default function Page() {
   return (
     <div className="min-h-screen w-full text-white">
