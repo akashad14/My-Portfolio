@@ -57,7 +57,7 @@ export default function Page() {
                 I am Akashdeep Singh
               </motion.h2>
               <motion.h1 variants={item} className="text-4xl md:text-6xl font-bold">
-                <span className="text-purple-400">Next-Level Frontend</span>
+                <span className="text-purple-400">React.js Frontend</span>
                 <br />
                 Developer.
               </motion.h1>
@@ -81,7 +81,7 @@ export default function Page() {
               <motion.div variants={container} className="flex gap-4">
                 {[
                   { icon: Github, href: "https://github.com/akashad14" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/akashdeep-singh-613644224" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/akashdeep-singh-613644224/" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
