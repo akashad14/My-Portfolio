@@ -23,13 +23,20 @@ const projects: Project[] = [
   },
   {
     id: 2,
+    title: "Food Odering Website",
+    description: "Website for order food",
+    image: "/images/project/p2.png",
+    liveLink: "https://food-ordering-website-lime.vercel.app/",
+  },
+  {
+    id: 3,
     title: "Travel website",
     description: "Travel website to book destination of traveling",
     image: "/images/project/travel website.png",
     liveLink: "https://meek-blancmange-02d768.netlify.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Job Posting Website",
     description: "Project for posting the jobs",
     image: "/images/project/job portal website.png",
